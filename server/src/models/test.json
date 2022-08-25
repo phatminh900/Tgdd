@@ -1,0 +1,48 @@
+{
+  "configuration": {
+    "monitor": {
+      "technology": "OLED",
+      "resolution": "1284 x 27778 Pixels",
+      "broadScreen": "6.1",
+      "sweepFrequency": 120,
+      "maximumLight": 1200
+    },
+    "operatingSystem": {
+      "type": "IOS",
+      "number": 15
+    },
+    "rearCam": {
+      "quantity": 2,
+      "quality": 12,
+      "film": ["4K 2160@24fps", "4K 2160@30fps"],
+      "isHasFlash": true,
+      "features": ["nightmode", "touch", "Wise", "zoom", "HDR"]
+    },
+    "frontCam": {
+      "quality": 12,
+      "features": ["nightmode", "touch", "Wise", "zoom", "HDR"]
+    },
+    "chip": {
+      "type": "Apple",
+      "number": "A15 ",
+      "technology": "Bionic"
+    },
+    "ram": 4,
+    "residualMemory": 503,
+    "internalMemory": 512,
+    "battery": {
+      "volume": 3240,
+      "type": "Li-Ion",
+      "W": 20
+    },
+    "size": {
+      "length": 160.8,
+      "width": 78.5
+    },
+    "volume": {
+      "depth": 7.65,
+      "weight": 240
+    },
+    "launchTime": "09/2021"
+  }
+}

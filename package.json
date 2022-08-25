@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/react-transition-group": "^4.4.5",
+    "node-sass": "^7.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-transition-group": "^4.4.5"
+  }
+}

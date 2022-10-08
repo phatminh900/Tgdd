@@ -1,0 +1,19 @@
+.cart {
+  &__nothing {
+    height: 50vh;
+    justify-content: center;
+    &,
+    &--details {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    svg {
+      font-size: 5.6rem;
+    }
+    button {
+      width: 100%;
+      margin-top: 1.2rem;
+    }
+  }
+}

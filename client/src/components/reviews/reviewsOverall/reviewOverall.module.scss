@@ -1,0 +1,10 @@
+$color-unactive-start: #888;
+$gap-el: 0.4rem;
+
+.star svg {
+  color: $color-unactive-start;
+  font-size: var(--medium-font-size);
+}
+.star.active svg {
+  color: var(--color-secondary) !important;
+}

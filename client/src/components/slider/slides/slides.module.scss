@@ -1,0 +1,17 @@
+.slide-box {
+  //   position: absolute;
+  transition: translate 1s;
+  &.smooth {
+    transition: translate 1s ease;
+  }
+}
+
+.slide {
+  // position: absolute;
+  // width: 100%;
+  // transition: all 1s;
+  // height: 100%;
+  img {
+    height: 20rem;
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../../styles/_mixins/mixins";
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  width: 100vw;
+  transition: all 0.3s;
+}
+.modal {
+  width: var(--max-width-container);
+  // margin: 0 auto;
+  height: 100%;
+  @include respond(tab-land) {
+    width: 100%;
+  }
+}

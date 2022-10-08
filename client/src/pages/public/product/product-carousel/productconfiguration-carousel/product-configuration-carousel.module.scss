@@ -1,0 +1,61 @@
+@import "../../../../../styles/_mixins/mixins";
+$slider-height: 50rem;
+.product-details {
+  &__main {
+    height: $slider-height;
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
+    img {
+      height: $slider-height;
+    }
+  }
+  &__configuration-list {
+    padding-bottom: 10rem;
+    & li {
+      display: grid;
+      grid-template-columns: 3fr 7fr;
+      padding: 0.6rem 0.8rem;
+    }
+  }
+  &__title {
+    background-color: var(--color-darker-white);
+    padding: 0.6rem 0.8rem;
+  }
+  &__configuration-list p {
+    font-size: var(--medium-font-size);
+    &:first-child {
+      &::after {
+        content: ":";
+      }
+      font-weight: 700;
+    }
+  }
+  &__features {
+    display: flex;
+    flex-direction: column;
+    li {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      &::before {
+        content: "";
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin-right: 0.6rem;
+      }
+    }
+  }
+}
+.product-details::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.product-details {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

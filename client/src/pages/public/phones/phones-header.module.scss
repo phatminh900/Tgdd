@@ -1,0 +1,21 @@
+.header {
+  position: relative;
+}
+.slider {
+  position: relative;
+  height: 20rem;
+  cursor: pointer;
+  overflow: hidden;
+  width: 80rem;
+  &:hover .btn {
+    box-shadow: 1.2rem 0 1.2rem 0.8rem rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  &:hover .btn svg {
+    color: rgba(0, 0, 0, 1);
+  }
+  &:hover .dot {
+    background-color: #ccc;
+  }
+}

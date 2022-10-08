@@ -1,0 +1,39 @@
+@import "../../styles/_mixins/mixins";
+.auth {
+  width: 100%;
+  max-width: 40rem;
+  margin: 3% auto !important;
+  padding: 1.6rem 3.2rem 7.2rem;
+  border: 1px solid var(--color-border);
+  @include respond(tab-land) {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none;
+    height: 100vh;
+  }
+  img {
+    width: 100%;
+  }
+}
+.form {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+.signup-link {
+  margin-top: 1.2rem;
+  width: 100%;
+  display: block;
+  font-size: var(--small-font-size);
+  text-align: center;
+  color: var(--color-tertiary) !important;
+}
+.error,
+.success {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}

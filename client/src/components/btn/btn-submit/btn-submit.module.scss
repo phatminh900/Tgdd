@@ -1,0 +1,11 @@
+.btn {
+  padding: 1.2rem;
+  width: 100%;
+  color: var(--color-white);
+  font-weight: 500;
+  background: linear-gradient(
+    to right bottom,
+    var(--color-tertiary),
+    var(--color-tertiary-light)
+  );
+}

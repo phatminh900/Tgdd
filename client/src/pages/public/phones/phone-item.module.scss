@@ -1,0 +1,45 @@
+$font-size-configuration: 1.2rem;
+$gap-el: 0.4rem;
+$gap-line: 8px;
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-line;
+}
+
+.monitor {
+  gap: $gap-el;
+  white-space: nowrap;
+  & > * {
+    padding: 0.1rem 0.6rem;
+    background-color: var(--color-light-white);
+  }
+}
+.storage {
+  gap: $gap-el;
+  & > button {
+    padding: 0.6rem;
+    font-size: var(--small-font-size);
+  }
+  & > button:hover {
+    color: var(--color-tertiary);
+    border: 1px solid var(--color-tertiary);
+  }
+}
+.price {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.reviews {
+  color: var(--color-grey-text);
+}
+.configuration-list {
+  list-style: disc;
+  cursor: text;
+  margin-left: 1.2rem;
+  font-size: $font-size-configuration;
+}
+.quantity {
+  margin-left: 0.6rem;
+}

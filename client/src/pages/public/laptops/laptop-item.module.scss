@@ -1,0 +1,32 @@
+$img-height: 21rem;
+
+$font-size-configuration: 1.2rem;
+
+.laptop {
+  display: flex;
+  flex-direction: column;
+}
+
+.storage {
+  & > button {
+    padding: 0.6rem;
+    font-size: var(--small-font-size);
+  }
+  & > button:hover {
+    color: var(--color-tertiary);
+    border: 1px solid var(--color-tertiary);
+  }
+}
+
+.reviews {
+  color: var(--color-grey-text);
+}
+.quantity {
+  margin-left: 0.6rem;
+}
+.configuration-list {
+  list-style: disc;
+  cursor: text;
+  margin-left: 1.2rem;
+  font-size: $font-size-configuration;
+}

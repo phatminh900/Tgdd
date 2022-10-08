@@ -1,0 +1,10 @@
+@import "../../../styles/_mixins/mixins";
+.phones {
+  @include respond(tab-land) {
+    padding: 0 !important;
+    & > *:first-child,
+    > *:last-child {
+      padding: var(--gutter-container) 1.6rem;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.configurations {
+  &__header {
+    margin-bottom: 1.2rem;
+  }
+  &__list {
+    font-size: var(--medium-font-size);
+    & > li:nth-child(2n + 1) {
+      background-color: #eee;
+    }
+    & > li {
+      display: grid;
+      grid-template-columns: 4fr 6fr;
+      padding: 0.8rem 0.6rem;
+    }
+    & > li > p:first-child::after {
+      content: ":";
+    }
+  }
+  &__btn {
+    width: 60%;
+    margin: 2rem auto 0 auto;
+  }
+}

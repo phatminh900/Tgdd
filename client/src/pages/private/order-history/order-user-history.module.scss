@@ -1,0 +1,62 @@
+@import "../../../styles/_mixins/mixins";
+.order-history {
+  &__category,
+  &__item {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr 1fr;
+  }
+
+  &__category {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--color-grey-text-light);
+    @include respond(tab-land) {
+      display: none;
+    }
+  }
+  &__item {
+    padding: 1.2rem 0;
+    @include respond(tab-land) {
+      font-size: var(--medium-font-size);
+      grid-template-columns: 8fr 2fr;
+      gap: 8px;
+      padding: 1.2rem 1.6rem;
+      border-radius: var(--border-radius-5px);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    }
+  }
+  &__products-name {
+    font-size: var(--medium-font-size);
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--color-grey-text);
+    a {
+      color: inherit;
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+
+  &__link {
+    color: var(--color-tertiary) !important;
+  }
+  &__order-price {
+    white-space: nowrap;
+  }
+  &__order-date {
+    @include respond(tab-land) {
+      grid-row: 1;
+      grid-column: 2/-1;
+    }
+  }
+  &__nothing {
+    flex-direction: column;
+    height: 100%;
+
+    svg {
+      font-size: 5rem;
+    }
+  }
+}

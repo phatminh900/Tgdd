@@ -1,0 +1,13 @@
+.user-review {
+  flex-direction: column;
+  margin: 1.2rem 0 4.4rem;
+  &__name {
+    font-weight: bold;
+  }
+  &__img {
+    width: 12.5rem;
+  }
+  svg {
+    color: var(--color-secondary);
+  }
+}

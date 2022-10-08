@@ -1,0 +1,66 @@
+// mixins
+@mixin links-hierarchy {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  & > a {
+    color: var(--color-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    &:not(:last-child)::after {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-bottom: 1px solid #333;
+      border-right: 1px solid #333;
+      transform: rotate(-45deg);
+    }
+  }
+}
+@mixin maxWidthCenter {
+  width: 100%;
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+}
+/*Media query manager
+0 - 600px : Phone
+600px - 900 : tab-port
+900-1200: tab-land
+
+1800 - :Big desktop
+
+
+-------breakpoint argument choices:
+-phone , tab-port tab-land big-desktop
+
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == "phone" {
+    //600px
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == "tab-port" {
+    // 900 - > 56.2em
+    @media (max-width: 56.2em) {
+      @content;
+    }
+  }
+  //1200px
+  @if $breakpoint == "tab-land" {
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+  @if $breakpoint == "big-desktop" {
+    // 1800 ->>>>
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

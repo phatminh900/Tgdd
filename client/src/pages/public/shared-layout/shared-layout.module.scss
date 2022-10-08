@@ -1,0 +1,37 @@
+@import "../../../styles/_mixins/mixins";
+
+.container {
+  overflow: hidden;
+  & > * {
+    padding: 0 1.6rem;
+  }
+  @include respond(tab-land) {
+    max-width: 90%;
+    margin: 0 auto;
+    & > * {
+      padding: 0;
+    }
+  }
+  @include respond(phone) {
+    max-width: 100%;
+  }
+}
+main {
+  min-height: 100vh;
+  & > *:first-child {
+    padding-top: var(--gutter-container);
+    @include respond(tab-land) {
+      padding: var(--gutter-container) 1.6rem;
+    }
+    @include respond(phone) {
+      padding: var(--gutter-container) 1rem;
+      background-color: var(--color-white);
+    }
+  }
+  & > * {
+    @include maxWidthCenter;
+    @include respond(big-desktop) {
+      max-width: var(--max-width-container-big-desktop);
+    }
+  }
+}

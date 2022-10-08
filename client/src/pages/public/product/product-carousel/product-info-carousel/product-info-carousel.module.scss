@@ -1,0 +1,76 @@
+@import "../../../../../styles/_mixins/mixins";
+$slider-height: 50rem;
+.product-info-slides {
+  height: 100%;
+  background-color: var(--color-white);
+}
+
+.title {
+  padding-bottom: 1.2rem;
+  cursor: pointer;
+  &.active {
+    border-bottom: 4px solid var(--color-tertiary);
+    & > a {
+      color: var(--color-tertiary);
+    }
+    font-weight: 600;
+  }
+}
+.slider {
+  height: $slider-height;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+  @include respond(tab-land) {
+    height: auto;
+    max-width: 90%;
+    & > * {
+      position: relative;
+      translate: 0 !important;
+    }
+    // disable button
+    & button {
+      display: none;
+    }
+  }
+
+  img {
+    height: $slider-height;
+    @include respond(tab-land) {
+      height: auto;
+    }
+  }
+}
+.list-slides {
+  margin-top: 2.4rem;
+  img {
+    height: 5rem;
+  }
+}
+.slide {
+  cursor: pointer;
+}
+.list-slides-img {
+  margin-top: 2.4rem;
+  display: flex;
+  justify-content: center;
+  @include respond(tab-land) {
+    display: none;
+  }
+  img {
+    height: 5rem;
+  }
+}
+.slide {
+  cursor: pointer;
+}
+.btn-close {
+  position: absolute;
+  top: 4%;
+  padding: 1.2rem;
+  border-radius: 5px;
+  right: 1%;
+  &:hover {
+    color: var(--color-red);
+  }
+}

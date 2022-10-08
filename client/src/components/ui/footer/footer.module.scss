@@ -1,0 +1,34 @@
+@import "../../../styles/_mixins/mixins";
+.logo {
+  background-size: 28rem 25.7rem;
+  background-position: 2px -17.6rem;
+  background-image: url("../../../assets/imgs/iconnew.png");
+  display: inline-block;
+  height: 4rem;
+  width: 22.8rem;
+}
+footer {
+  padding-top: 2.4rem;
+  padding: 8rem 0;
+  //   width: 100%;
+  background-color: var(--color-darker-white);
+  border-top: 1px solid var(--color-border);
+}
+.copyright-box {
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--max-width-container);
+  padding: 5.6rem 0;
+  margin: 0 auto;
+  @include respond(tab-land) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+}
+.copyright {
+  font-style: italic;
+  a {
+    color: var(--color-tertiary);
+  }
+}

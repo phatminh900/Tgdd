@@ -1,0 +1,45 @@
+@import "../../../styles/_mixins/mixins";
+.ratings {
+  cursor: pointer;
+  padding: 1.2rem 0;
+  @include respond(phone) {
+    max-width: 80%;
+  }
+
+  &__review {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1.2rem 0 0.8rem;
+    &--name {
+      font-weight: bold;
+    }
+    &--img {
+      width: 12.5rem;
+    }
+    svg {
+      color: var(--color-secondary);
+    }
+  }
+
+  &__progress {
+    background-color: var(--color-border);
+    min-width: 90%;
+
+    &,
+    &--fill {
+      display: block;
+      height: 3px;
+    }
+
+    &--fill {
+      content: "";
+      display: block;
+      background-color: var(--color-secondary);
+    }
+  }
+  &__percentage {
+    margin-left: 0.2rem;
+    color: var(--color-tertiary);
+  }
+}

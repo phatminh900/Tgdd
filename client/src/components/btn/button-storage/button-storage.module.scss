@@ -1,0 +1,6 @@
+.btn {
+  &.active {
+    color: var(--color-tertiary);
+    border: 1px solid var(--color-tertiary);
+  }
+}

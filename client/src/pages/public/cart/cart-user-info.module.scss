@@ -1,0 +1,33 @@
+.cart {
+  &__user-info {
+    padding: 1.2rem 0;
+    margin-top: 1.2rem;
+    border-top: 1px solid var(--border-color);
+  }
+  &__form {
+    margin: 1.2rem 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    &::after {
+      content: attr(data-error-msg);
+      position: absolute;
+      left: 50%;
+      translate: -50% 0;
+      bottom: -5%;
+      color: var(--color-red);
+    }
+    label {
+      display: none;
+    }
+    & > * {
+      flex: 1;
+    }
+  }
+
+  &__input-error {
+    box-shadow: 0 0 0 1px var(--color-red);
+    background-color: #ffc078;
+    color: #fd7e14;
+  }
+}

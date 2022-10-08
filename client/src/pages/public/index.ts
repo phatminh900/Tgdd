@@ -1,0 +1,16 @@
+export * from "./NotFound";
+export * from "./phones";
+export * from "./laptops";
+export * from "./login/";
+// export * from "./phone";
+export * from "./review";
+export * from "./signup";
+export * from "./cart";
+export * from "./product";
+export * from "./home";
+export * from "../private/order-history";
+export * from "./forgotPassword";
+export * from "./resetPassword";
+export * from "./error";
+// export * from "./laptop/";
+// export * from "./shared-layout";

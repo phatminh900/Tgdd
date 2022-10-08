@@ -1,0 +1,106 @@
+@import "../../../styles/_mixins/mixins";
+@import "../../../styles/_mixins/mixins";
+$gutter-component: 3.2rem;
+$gutter-line: 1.4rem;
+.main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  column-gap: $gutter-component;
+  padding-top: var(--gutter-container);
+  margin-top: var(--gutter-container);
+  border-top: 1px solid var(--color-border);
+  @include respond(tab-land) {
+    grid-template-columns: 1fr;
+    row-gap: 1.2rem;
+  }
+}
+.modal {
+  margin: 0 auto;
+  @include respond(tab-land) {
+    margin: 0 0;
+  }
+}
+// .product {
+//   @include respond(tab-land) {
+//     padding: 1.2rem 1.6rem;
+//   }
+// }
+.info {
+  @include respond(tab-land) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.links {
+  @include links-hierarchy;
+}
+
+.title {
+  margin-right: 1.2rem;
+}
+
+.reviews {
+  cursor: pointer;
+  color: var(--color-tertiary);
+  // not a child of but still using bem
+  &__text {
+    color: var(--color-tertiary);
+    cursor: pointer;
+    margin-left: 0.6rem;
+    font-size: 1.2rem;
+  }
+}
+.left {
+  max-width: 70rem;
+  @include respond(tab-land) {
+    max-width: 100%;
+  }
+  & > * {
+    margin: 2.4rem 0;
+  }
+}
+.product-general-information-box {
+  overflow: hidden;
+  height: 30rem;
+  position: relative;
+  &__btn {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// right
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter-line;
+}
+
+.storage,
+.colors,
+.price {
+  gap: 0.6rem;
+  // margin-bottom: $gutter-line;
+}
+.btn-storage,
+.btn-color {
+  padding: 1rem 2.4rem;
+  border: 1px solid var(--color-border);
+}
+.price {
+  color: var(--color-red);
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.btn-buy {
+  width: 100%;
+  background-color: var(--color-secondary);
+  border-radius: var(--border-radius-5px);
+  color: var(--color-white);
+  text-transform: uppercase;
+  padding: 1.6rem;
+  font-weight: 600;
+}

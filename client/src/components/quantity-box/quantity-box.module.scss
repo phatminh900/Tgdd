@@ -1,0 +1,19 @@
+.quantity-box {
+  &__btn-quantity,
+  &__quantity {
+    width: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    border: 1px solid var(--color-border);
+  }
+  &__btn-quantity {
+    color: var(--color-tertiary);
+    font-size: 2.4rem;
+    font-weight: 500;
+    &--decrease {
+      margin-left: 1.2rem;
+    }
+  }
+}

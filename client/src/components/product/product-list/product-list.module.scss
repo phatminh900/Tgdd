@@ -1,0 +1,15 @@
+@import "../../../styles/_mixins/mixins";
+.list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.6rem;
+  @include respond(tab-land) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include respond(tab-port) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond(phone) {
+    gap: 4px;
+  }
+}

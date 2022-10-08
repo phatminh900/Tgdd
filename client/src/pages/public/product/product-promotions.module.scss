@@ -1,0 +1,24 @@
+// $font-size-promotion: 1.4rem;
+
+.promotions {
+  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  font-size: var(--medium-font-size);
+  & > * {
+    padding: 1rem 1.2rem;
+  }
+  &__header {
+    border-bottom: 1px solid var(--color-border);
+
+    background-color: #eee;
+  }
+  &__order {
+    width: 15px;
+    height: 15px;
+    font-size: 1rem;
+    border-radius: 50%;
+    background-color: var(--color-tertiary);
+    color: var(--color-white);
+    margin-right: 1.2rem;
+  }
+}

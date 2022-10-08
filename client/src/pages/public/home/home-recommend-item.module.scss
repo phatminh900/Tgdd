@@ -1,0 +1,19 @@
+@import "../../../styles/_mixins/mixins";
+
+.product {
+  padding: 1rem 1rem 2rem;
+  img {
+    width: var(--img-product-item);
+  }
+}
+.rating-overview {
+  color: var(--color-secondary);
+  svg {
+    color: inherit;
+    margin-left: 0.6rem;
+  }
+
+  p:last-child {
+    color: #888;
+  }
+}

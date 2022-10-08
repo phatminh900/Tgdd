@@ -1,0 +1,23 @@
+@import "../../../styles/_mixins/mixins";
+.header {
+  background-color: var(--color-primary);
+  font-size: var(--font-size-header);
+  // @include respond(tab-land) {
+  //   max-width: var(--max-width-container-medium);
+  //   margin: 0 auto;
+  // }
+  nav > * {
+    @include maxWidthCenter;
+    padding: 1.2rem 0;
+    @include respond(tab-land) {
+      max-width: 100%;
+    }
+
+    @include respond(big-desktop) {
+      max-width: var(--max-width-container-big-desktop);
+    }
+    a {
+      color: var(--color-grey-text);
+    }
+  }
+}

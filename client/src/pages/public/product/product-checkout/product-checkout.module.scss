@@ -1,0 +1,122 @@
+@import "../../../../styles/_mixins/mixins";
+$gutter-line: 1rem;
+
+.product-checkout {
+  background: var(--color-white);
+  font-size: var(--medium-font-size);
+  width: 30%;
+  padding: 1.2rem 1.2rem 2.4rem;
+  border-radius: var(--border-radius-5px);
+  @include respond(tab-land) {
+    width: 100%;
+    top: 100%;
+    translate: 0 -50%;
+  }
+  &__header {
+    position: relative;
+  }
+
+  &__header {
+    padding-bottom: $gutter-line;
+    border-bottom: 1px solid var(--color-border);
+  }
+  &__body,
+  &__open-promotion {
+    padding: $gutter-line 0;
+  }
+  &__notification {
+    margin-bottom: $gutter-line;
+  }
+  &__price {
+    color: var(--color-red);
+  }
+  &__select-color {
+    & > li {
+      font-size: var(--small-font-size);
+      width: 15%;
+      min-height: 12.5rem;
+    }
+  }
+  &__product {
+    flex-direction: column;
+    font-size: inherit;
+    text-align: center;
+    // active
+    &.active {
+      & > img {
+        border-color: var(--color-secondary);
+      }
+      .product-checkout__circle {
+        border-color: var(--color-secondary);
+        &::before {
+          background-color: var(--color-secondary);
+        }
+      }
+    }
+  }
+  &__img {
+    display: inline-block;
+    padding: 0.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-5px);
+  }
+  &__circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+      background-color: transparent;
+    }
+  }
+  &__quantity-box {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1.2rem;
+
+    // border: 1px solid var(--color-border);
+  }
+  &__promotion {
+    &.active {
+      .product-checkout__open-promotion svg {
+        transform: rotate(-180deg);
+      }
+      .product-checkout__promotion-list {
+        display: block;
+      }
+    }
+  }
+  &__open-promotion {
+    color: var(--color-tertiary);
+    margin-bottom: $gutter-line;
+    svg {
+      transition: transform 0.4s;
+    }
+  }
+
+  &__promotion-list {
+    display: none;
+    font-size: var(--medium-font-size);
+  }
+  &__btn-close {
+    position: absolute;
+    top: 2%;
+    right: 6%;
+    font-size: 3.2rem;
+    transition: all 0.4s;
+    &:hover {
+      color: var(--color-red);
+    }
+  }
+  &__see-cart {
+    width: 50%;
+    display: block;
+    color: var(--color-tertiary);
+    margin: $gutter-line auto;
+  }
+}

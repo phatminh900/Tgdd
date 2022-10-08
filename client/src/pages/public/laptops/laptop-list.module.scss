@@ -1,0 +1,11 @@
+$img-height: 21rem;
+
+$font-size-configuration: 1.2rem;
+$gap-el: 0.4rem;
+$gap-line: 8px;
+
+.list {
+  font-size: var(--medium-font-size);
+  margin-top: var(--gutter-container);
+  display: flex;
+}

@@ -2,17 +2,20 @@ import { NextFunction, Request, Response } from "express";
 import multer from "multer";
 import sharp from "sharp";
 import Review from "models/review.model";
-import { updateOne } from "services/factory.service";
+import { findOneBySlug, updateOne } from "services/factory.service";
 import catchAsync from "utils/catchAsync";
+import { findAllDocs } from "services/factory.service";
 import {
   createOneHandler,
   deleteOneHandler,
   findAllDocsHandler,
   getOneHandler,
+  getOneBySlugHandler,
   updateOneHandler,
 } from "./factory.controller";
 import { BadRequestError } from "utils/AppError";
 import resizeImgUtil from "utils/resizeImg";
+import Phone from "models/phone.model";
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -42,6 +45,7 @@ export const resizeImg = catchAsync(
       quality: 90,
       fileStorageResource: "reviews",
     });
+
     //   await sharp(req.file.buffer)
     // .resize(125, 125)
     // .toFormat("png")
@@ -65,9 +69,9 @@ export const setProductId = (
   res: Response,
   next: NextFunction
 ) => {
+  // ex{phoneId:21323123}
   const paramKey = Object.keys(req.params)[0];
   const productKey = paramKey.slice(0, paramKey.indexOf("Id"));
-
   // req.productId;
   req.body[productKey] = req.params[paramKey];
   next();
@@ -79,34 +83,47 @@ export const setUserId = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 // @ts-ignore
-// export const createReviewHandler = createOneHandler(Review);
-export const createReviewHandler = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+
+export const createReviewHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
     const newDoc = req.file
       ? await Review.create({ ...req.body, photo: req.file.filename })
       : await Review.create(req.body);
-    // console.log(getProductId(newDoc));
     // add to product rating section
     // @ts-ignore
-    newDoc?.constructor.calcRatingAverage(getProductId(newDoc), req.Phone);
+    // @ts-ignore
+    newDoc?.constructor.calcRatingAverage(getProductId(newDoc), req.Product);
     res.status(200).json({
       status: "success",
       data: newDoc,
     });
+  } catch (error) {
+    const err = error as { code: number };
+    if (err.code === 11000) {
+      return res.status(400).json({
+        status: "fail",
+        message: "You're already reviews",
+      });
+    }
+    res.status(400).json({
+      status: "fail",
+      data: error,
+    });
   }
-);
+};
 // export const getAllReviewsHandler = findAllDocsHandler(Review);
 export const getAllReviewsHandler = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const productKey = Object.keys(req.body)[0];
-    const test = {
-      [productKey]: req.body[productKey],
-    };
-    console.log(test);
-    const reviews = await Review.find({
-      [productKey]: req.body[productKey],
-    });
-    res.status(200).json({ status: "success", data: reviews });
+
+    const reviews = await findAllDocs(Review, req.query);
+    res
+      .status(200)
+      .json({ status: "success", result: reviews.length, data: reviews });
   }
 );
 export const getReviewHandler = getOneHandler(Review);
@@ -116,7 +133,6 @@ export const updateReviewHandler = catchAsync(
     const doc = await updateOne(Review, id, req.body);
     // update quantity and average on the product
     // @ts-ignore
-
     // @ts-ignore
     doc?.constructor.calcRatingAverage(getProductId(doc), req.Phone);
     res.status(200).json({
@@ -125,4 +141,17 @@ export const updateReviewHandler = catchAsync(
     });
   }
 );
+// slug
+export const getReviewBySlugHandler = (Model: any) =>
+  getOneBySlugHandler(Model, { path: "reviews" }, [
+    "reviews",
+    "ratingAverage",
+    "ratingQuantity",
+    "imgCover",
+    "title",
+    "firm",
+    "category",
+    "price",
+  ]);
+
 export const deleteReviewHandler = deleteOneHandler(Review);

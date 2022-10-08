@@ -1,0 +1,16 @@
+extends baseEmail 
+block content
+    p Hi #{firstName},
+    p Welcome to TGDD 🎉🙏
+    p This is my first MERN project
+    table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+        tbody
+            tr
+                td(align='left')
+                    table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+                        tbody
+                            tr
+                                td
+                                    a(href=`${url}`, target='_blank') Go to my website
+    p &times; Tgdd.
+    p - TranMinhPhat (phatminh900@gmail.com)

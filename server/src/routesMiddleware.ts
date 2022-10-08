@@ -1,5 +1,12 @@
 import { Express, Request, Response, NextFunction } from "express";
-import { userRouter, reviewRouter, phoneRouter } from "routes";
+import {
+  userRouter,
+  reviewRouter,
+  phoneRouter,
+  laptopRouter,
+  bookingRouter,
+  productRouter,
+} from "routes";
 import { errorController } from "controllers/error.controller";
 import { protect } from "middlewares/protect.middleware";
 import { NotFoundError } from "utils/AppError";
@@ -14,9 +21,10 @@ const routes = (app: Express) => {
   // --iphone
 
   app.use("/api/v1/phones", phoneRouter);
-
+  app.use("/api/v1/laptops", laptopRouter);
+  app.use("/api/v1/products", productRouter);
   app.use("/api/v1/reviews", reviewRouter);
-
+  app.use("/api/v1/booking", bookingRouter);
   //   global error handler
   app.all("*", (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError(`${req.originalUrl} not found on this server.`));

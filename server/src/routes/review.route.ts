@@ -10,13 +10,20 @@ import {
   setProductId,
   uploadReviewImg,
   resizeImg,
+  getReviewBySlugHandler,
 } from "controllers/review.controller";
 import { protect } from "middlewares/protect.middleware";
 import restrictTo from "middlewares/restrictTo.middleware";
+import Phone from "models/phone.model";
+import Laptop from "models/laptop.model";
 const router = express.Router({ mergeParams: true });
 // /:productID/reviews
 
 router.route("/").get(getAllReviewsHandler);
+// reviews on product
+router.get("/phones/:slug", getReviewBySlugHandler(Phone));
+router.get("/laptops/:slug", getReviewBySlugHandler(Laptop));
+// router.get("/phones/:slug", getReviewBySlugHandler(Phone));
 
 router.get("/:id", getReviewHandler);
 // Review/id/reviews

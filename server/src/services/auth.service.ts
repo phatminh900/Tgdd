@@ -1,9 +1,9 @@
 import { DocumentDefinition } from "mongoose";
-import User, { UserDocument } from "models/user.model";
+import User, { IUserDocument } from "models/user.model";
 import { NotFoundError } from "utils/AppError";
 
 export const validatePassword = async (
-  input: DocumentDefinition<Omit<UserDocument, "name" | "passwordConfirm">>
+  input: DocumentDefinition<Omit<IUserDocument, "name" | "passwordConfirm">>
 ) => {
   try {
     const user = await User.findOne({ email: input.email }).select("+password");

@@ -11,14 +11,15 @@ const handleValidationError = (err: any) => {
 
   return new BadRequestError(errorMessage);
 };
-const castError = (err: any) => {
+const handleCastError = (err: any) => {
   const field = Object.keys(err.errors)[0];
   return new BadRequestError(
     `Invalid ${err.errors[field]} (${err.errors[field].stringValue})`
   );
 };
 const handleDuplicateError = (err: any) => {
-  const fields = Object.keys(err.keyValue);
+  const fields = Object.keys(err?.keyValue);
+
   let errMsg = fields.reduce((msg, field) => {
     if (!err.keyValue[field]) return msg;
     return msg + `${field} ${err.keyValue[field]}`;
@@ -56,14 +57,14 @@ const sendProdErr = (err: any, req: Request, res: Response) => {
 };
 export const errorController = (err: Error, req: Request, res: Response) => {
   if (process.env.NODE_ENV === "development") {
-    handleDuplicateError(err);
+    // handleDuplicateError(err);
+    handleCastError(err);
     sendDevErr(err, req, res);
   }
   if (process.env.NODE_ENV === "production") {
     let error = Object.create(err);
-    console.log(error);
     if (error.code === 11000) error = handleDuplicateError(error);
-    // if(error.name===)
+    if (error.name === "CastError") error = handleCastError(error);
     if (error.name === "ValidationError") error = handleValidationError(err);
     if (error.name === "JsonWebTokenError") error = handleJwtInvalidError();
     if (error.name === "TokenExpiredError") error = handleJwtExpiresError();

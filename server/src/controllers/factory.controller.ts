@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import Phone from "models/phone/phone.model";
+import Phone from "models/phone.model";
 
 import mongoose, { Model, PopulateOptions } from "mongoose";
 import {
@@ -41,24 +41,16 @@ export const findAllDocsHandler = <T>(
   populateOptions?: PopulateOptions
 ) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const queryStr = JSON.parse(
-      JSON.stringify(req.query).replace(
-        /\b(gt|gte|lt|lte)\b/gi,
-        (match) => `$${match}`
-      )
-    );
-    // console.log(queryStr);
-    const docs = await findAllDocs(Model, queryStr, populateOptions);
+    const docs = await findAllDocs(Model, req.query, populateOptions);
     res.status(200).json({
       status: "success",
-      test: true,
       results: docs.length,
       data: docs,
     });
   });
 export const getOneHandler = <T>(
   Model: Model<T>,
-  populateOption?: PopulateOption
+  populateOption?: PopulateOptions
 ) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
@@ -74,21 +66,31 @@ export const getOneHandler = <T>(
 // slug version
 export const getOneBySlugHandler = <T>(
   Model: Model<T>,
-  populateOption?: PopulateOption
+  populateOption?: PopulateOptions,
+  selectOptions?: string | string[]
 ) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const { slug } = req.params;
+    const query = req.query;
     // valid id next middleware
     if (mongoose.Types.ObjectId.isValid(slug)) return next();
     const doc = populateOption
-      ? await findOneBySlug(Model, slug, populateOption)
+      ? // combine populate and query together
+        await findOneBySlug(
+          Model,
+          slug,
+          { ...populateOption, options: req.query },
+          selectOptions
+        )
       : await findOneBySlug(Model, slug);
-
     res.status(200).json({
       status: "success",
       data: doc,
     });
   });
+
+//
+
 export const updateOneHandler = <T>(Model: Model<T>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;

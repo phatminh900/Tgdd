@@ -1,17 +1,17 @@
 import mongoose, { Model, Schema, Types } from "mongoose";
 import requiredField from "utils/requiredField";
 
-export interface ReviewDocument {
+export interface IReviewDocument {
   review: string;
   rating: number;
-
+  laptop?: Types.ObjectId;
   phone?: Types.ObjectId;
   photo?: string;
   user: Types.ObjectId;
 }
 type Category = "phone" | "laptop";
 
-export interface ReviewModel extends Model<ReviewDocument> {
+export interface ReviewModel extends Model<IReviewDocument> {
   calcRatingAverage: (productId: string, category: Category) => void;
 }
 const reviewSchema = new mongoose.Schema(
@@ -28,6 +28,10 @@ const reviewSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "phone",
     },
+    laptop: {
+      type: Schema.Types.ObjectId,
+      ref: "laptop",
+    },
     photo: String,
     user: {
       type: Schema.Types.ObjectId,
@@ -41,15 +45,13 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 // prevent duplicate review
-reviewSchema.index({ phone: 1, user: 1 }, { unique: true });
-// calc ratingAvg
+reviewSchema.index({ user: 1, phone: 1 }, { unique: true });
+reviewSchema.index({ user: 1, laptop: 1 }, { unique: true });
+// calc ratingAvgcd
 reviewSchema.statics.calcRatingAverage = async function (
   productId: object,
   Model: Model<any>
 ) {
-  // console.log(Model, "1111");
-
-  // console.log(Model.modelName.toLowerCase());
   const statitis = await this.aggregate([
     { $match: productId },
     {
@@ -79,32 +81,7 @@ reviewSchema.statics.calcRatingAverage = async function (
 
   return statitis;
 };
-// reviewSchema.post("save", async function (doc) {
-//   // @ts-ignore
-//   const document = { ...this };
-//   // @ts-ignore get t
-//   const { _doc } = document;
-//   const { review, rating, __v, user, _id, ...product } = _doc;
-//   // get the product Key
 
-//   // @ts-ignore
-//   // product ={[product]:id}
-//   (this.constructor as Model<ReviewDocument>).calcRatingAverage(product);
-//   // next();
-// });
-// reviewSchema.post(/^findOneAnd/, function (doc) {
-//   // console.log(doc);
-//   if (doc) {
-//     // @ts-ignore
-//     const { _doc } = doc;
-//     const { review, rating, user, __v, _id, ...product } = _doc;
-
-//     // @ts-ignore
-//     // product ={[product]:id}
-
-//     (doc.constructor as Model<ReviewDocument>).calcRatingAverage(product);
-//   }
-// });
 reviewSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",
@@ -112,7 +89,7 @@ reviewSchema.pre(/^find/, function (next) {
   });
   next();
 });
-const Review = mongoose.model<ReviewDocument, ReviewModel>(
+const Review = mongoose.model<IReviewDocument, ReviewModel>(
   "Review",
   reviewSchema
 );

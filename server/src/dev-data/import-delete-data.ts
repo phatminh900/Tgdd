@@ -7,24 +7,6 @@ import connect from "utils/connect";
 connect();
 // create Model
 
-// const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, "utf-8"));
-// const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, "utf-8"));
-// const reviews = JSON.parse(
-//   fs.readFileSync(`${__dirname}/reviews.json`, "utf-8")
-// );
-
-// const importData = async () => {
-//   try {
-//     // await Tour.create(tours);
-//     // await Reviews.create(reviews);
-//     await User.create(users, { validateBeforeSave: false });
-//     console.log("Data successfully added!");
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     process.exit();
-//   }
-// };
 const deleteData = async () => {
   try {
     // await Reviews.deleteMany();

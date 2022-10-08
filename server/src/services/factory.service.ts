@@ -5,6 +5,7 @@ import mongoose, {
   Model,
   PopulateOptions,
 } from "mongoose";
+import APIFeatures from "utils/apiFeatures";
 
 export const createOne = async <T, U>(
   Model: Model<T>,
@@ -16,18 +17,6 @@ export const createOne = async <T, U>(
     throw error;
   }
 };
-// export async function createOne<T>(
-//   Model: Model<T>,
-//   input: DocumentDefinition<ProductDocument>
-// ) {
-//   {
-//     try {
-//       return await Model.create(input);
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
-// }
 
 export const findAllDocs = async <T>(
   Model: Model<T>,
@@ -35,9 +24,14 @@ export const findAllDocs = async <T>(
   populateOptions?: PopulateOptions
 ) => {
   try {
+    const features = new APIFeatures(Model.find(), queryOptions)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
     return populateOptions
-      ? await Model.find(queryOptions).populate(populateOptions)
-      : await Model.find(queryOptions);
+      ? await features.query.populate(populateOptions)
+      : await features.query;
   } catch (error) {
     throw error;
   }
@@ -58,16 +52,20 @@ export const findOne = async <T>(
 export const findOneBySlug = async <T>(
   Model: Model<T>,
   slug: string,
-  populateOption?: PopulateOptions
+  populateOption?: PopulateOptions,
+  selectOptions?: string | string[]
 ) => {
   try {
     return populateOption
-      ? await Model.findOne({ slug }).populate(populateOption)
+      ? await Model.findOne({ slug })
+          .populate(populateOption)
+          .select(selectOptions)
       : await Model.findOne({ slug });
   } catch (error) {
     throw error;
   }
 };
+
 export const updateOne = async <T, U>(
   Model: Model<T>,
   id: string,

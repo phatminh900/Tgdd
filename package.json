@@ -7,6 +7,6 @@
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build-client"
   }, "engines": {
-    "node": "16.x"
+    "node": ">=12.0.0"
   }
 }

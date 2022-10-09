@@ -57,6 +57,11 @@ if (process.env.NODE_ENV === "development") {
 // static file
 // public not in src fixed it
 app.use(express.static(path.join(__dirname, "../", "public")));
+app.use(express.static(path.join(__dirname, "../../client",'build')));
+
+
+// app.use(express.static(path.join()))
+
 app.use(compression())
 // const port = process.env.PORT || 3002;
 // app.listen(port, () => {

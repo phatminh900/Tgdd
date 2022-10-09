@@ -15,15 +15,15 @@ class Email {
     //
     if (process.env.NODE_ENV === "production") {
       // sendinBLue
-      const host = process.env.SENDINBLUE_HOST!;
-      const port = process.env.SENDINBLUE_PORT!;
+      const host = process.env.MAILJET_HOST!;
+      const port = process.env.MAILJET_PORT!;
       return nodemailer.createTransport({
         // @ts-ignore
         host,
         port,
         auth: {
-          user: process.env.SENDINBLUE_LOGIN,
-          pass: process.env.SENDINBLUE_PASSWORD,
+          user: process.env.MAILJET_CREDENTIALS_PUBLIC,
+          pass: process.env.MAILJET_CREDENTIALS_PRIVATE,
         },
       });
     }

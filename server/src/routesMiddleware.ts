@@ -1,3 +1,4 @@
+import path from "path";
 import { Express, Request, Response, NextFunction } from "express";
 import {
   userRouter,
@@ -12,6 +13,7 @@ import { protect } from "middlewares/protect.middleware";
 import { NotFoundError } from "utils/AppError";
 
 const routes = (app: Express) => {
+
   // users
   app.use("/api/v1/users", userRouter);
 
@@ -25,6 +27,11 @@ const routes = (app: Express) => {
   app.use("/api/v1/products", productRouter);
   app.use("/api/v1/reviews", reviewRouter);
   app.use("/api/v1/booking", bookingRouter);
+
+  app.get('*',(req,res)=>{
+    res.sendFile((path.join(__dirname,'../../client','build','index.html')))
+  })
+
   //   global error handler
   app.all("*", (req: Request, res: Response, next: NextFunction) => {
     next(new NotFoundError(`${req.originalUrl} not found on this server.`));

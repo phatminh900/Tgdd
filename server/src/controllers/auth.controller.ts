@@ -9,8 +9,22 @@ import { signJwt } from "utils/jwt";
 import { BadRequestError, NotFoundError } from "utils/AppError";
 import Email from "utils/email";
 
-export const signup = catchAsync(
+// export const signup = catchAsync(
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     const { role, ...body } = req.body;
+//     const user = await createOne(User, body);
+//     await new Email(user, "thegioididong").sendWelcome();
+//     res.status(201).json({
+//       status: "success",
+//       data: {
+//         ...omit(user.toJSON(), "password"),
+//       },
+//     });
+//   }
+// );
+export const signup = 
   async (req: Request, res: Response, next: NextFunction) => {
+   try {
     const { role, ...body } = req.body;
     const user = await createOne(User, body);
     await new Email(user, "thegioididong").sendWelcome();
@@ -20,8 +34,14 @@ export const signup = catchAsync(
         ...omit(user.toJSON(), "password"),
       },
     });
+   } catch (error) {
+    res.status(500).json({
+      status:'fail'
+      ,err:error
+    })
+   }
   }
-);
+
 
 export const login = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {

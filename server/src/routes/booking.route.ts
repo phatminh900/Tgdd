@@ -9,7 +9,7 @@ import { protect } from "middlewares/protect.middleware";
 const router = express.Router();
 
 router.get("/", createBookingCheckout, (req, res, next) =>
-  res.redirect("http://localhost:3000")
+  res.redirect("/")
 );
 
 router.get("/create-checkout-session/:productId", protect, getCheckoutSession);

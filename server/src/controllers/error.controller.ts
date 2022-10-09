@@ -12,7 +12,7 @@ const handleValidationError = (err: any) => {
   return new BadRequestError(errorMessage);
 };
 const handleCastError = (err: any) => {
-  const field = Object.keys(err.errors)[0];
+  const field = Object.keys(err)[0];
   return new BadRequestError(
     `Invalid ${err.errors[field]} (${err.errors[field].stringValue})`
   );
@@ -43,6 +43,7 @@ const sendDevErr = (err: any, req: Request, res: Response) => {
 };
 const sendProdErr = (err: any, req: Request, res: Response) => {
   // generic err cause by dev
+  console.error('💥💥💥')
   if (!err.isOperationalError)
     return res.status(500).json({
       status: "fail",
@@ -58,7 +59,6 @@ const sendProdErr = (err: any, req: Request, res: Response) => {
 export const errorController = (err: Error, req: Request, res: Response) => {
   if (process.env.NODE_ENV === "development") {
     // handleDuplicateError(err);
-    handleCastError(err);
     sendDevErr(err, req, res);
   }
   if (process.env.NODE_ENV === "production") {

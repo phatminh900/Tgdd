@@ -44,6 +44,7 @@ const InputPassword = ({
     <>
       {content}
       <button
+      tabIndex={-1}
         type="button"
         className={styles.showPassword}
         onClick={() => setIsShowPassword((prev) => !prev)}

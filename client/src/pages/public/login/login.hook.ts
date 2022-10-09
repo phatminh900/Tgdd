@@ -45,7 +45,7 @@ const useLoginHook = (
             ROUTES.SIGNUP
           )
         ) {
-          navigate(ROUTES.HOME_PAGE, { replace: true });
+          return navigate(ROUTES.HOME_PAGE, { replace: true });
         }
 
         navigate(-1);

@@ -34,7 +34,7 @@ export const getCheckoutSession = catchAsync(
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      success_url: `${req.protocol}://localhost:3000/?products=${products.join(
+      success_url: `/?products=${products.join(
         "&products="
       )}&quantities=${quantities.join("&quantities=")}&prices=${prices.join(
         "&prices="
@@ -42,7 +42,7 @@ export const getCheckoutSession = catchAsync(
         userAddress
       )}&user=${userId}&colors=${currentColors.join("&colors=")}`,
       mode: "payment",
-      cancel_url: `${req.protocol}://localhost:3000/cart`,
+      cancel_url: `/cart`,
       customer_email: req.user.email,
       client_reference_id: req.params.productId,
       //

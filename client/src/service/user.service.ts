@@ -33,7 +33,6 @@ const signupReactRouter = async (userValue: {
       "post",
       userValue
     );
-
     return data;
   } catch (error) {
     return handleErrorApiReactRouter(error);

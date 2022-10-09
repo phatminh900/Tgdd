@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import log from "./logger";
+import routes from "routesMiddleware";
+
 dotenv.config();
 const uri = process.env.DATABASE!;
 
-console.log(uri);
+// console.log(uri);
 const connect = () => {
   mongoose
     .connect(uri)

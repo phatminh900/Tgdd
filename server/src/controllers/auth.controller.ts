@@ -8,11 +8,11 @@ import { validatePassword } from "services/auth.service";
 import { signJwt } from "utils/jwt";
 import { BadRequestError, NotFoundError } from "utils/AppError";
 import Email from "utils/email";
+
 export const signup = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { role, ...body } = req.body;
     const user = await createOne(User, body);
-
     await new Email(user, "thegioididong").sendWelcome();
     res.status(201).json({
       status: "success",
@@ -22,6 +22,7 @@ export const signup = catchAsync(
     });
   }
 );
+
 export const login = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = await validatePassword(req.body);
@@ -55,7 +56,7 @@ export const forgotPassword = catchAsync(
       // const resetLink = `${req.protocol}://${req.get(
       //   "host"
       // )}/api/v1/users/resetPassword/${resetToken}`;
-      const resetLink = `http://localhost:3000/resetPassword/${resetToken}`;
+      const resetLink = `/resetPassword/${resetToken}`;
       await new Email(user, resetLink).sendPasswordReset();
 
       res.status(200).json({
